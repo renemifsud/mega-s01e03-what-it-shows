@@ -1,5 +1,6 @@
-// The problems inside a merged ticket: the cause causes.ts gives each report, with the desk's
-// one-day moves (desk-notes.json) split out, because a one-day move is not a day/month swap.
+// The problems inside a merged ticket, in the desk's view: every report counts under the cause
+// causes.ts files it under. The desk's one-day moves (desk-notes.json) are a problem of their own,
+// counted as the desk reads them, and they stay counted where they are filed (causes.ts `readAs`).
 import { causeOf, uniqueById, type Report, type Tenant } from '#lib/kb/causes';
 
 export type Problem = 'parser' | 'hint' | 'one-day' | 'unplaced';
@@ -20,8 +21,9 @@ export function groupByProblem(
   const merged = uniqueById(reports).filter((r) => r.mergedInto === ticket);
   const by = new Map<Problem, Report[]>();
   for (const r of merged) {
-    const p = problemOf(r, tenantOf(r), oneDayMove);
+    const p: Problem = causeOf(r, tenantOf(r)) ?? 'unplaced';
     by.set(p, [...(by.get(p) ?? []), r]);
+    if (oneDayMove.includes(r.id)) by.set('one-day', [...(by.get('one-day') ?? []), r]);
   }
   const groups = [...by.entries()]
     .map(([problem, rs]) => {

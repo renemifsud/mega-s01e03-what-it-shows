@@ -19,7 +19,7 @@ reports split into three problems. Each one now has its own ticket.
 
 | problem | reports | tenants | seen |
 |---|---|---|---|
-| `parser` | 374 | 11 | 2026-04-01 → 2026-10-04 |
+| `parser` | 379 | 11 | 2026-04-01 → 2026-10-04 |
 | `hint` | 33 | 3 | 2026-04-17 → 2026-09-22 |
 | `one-day` | 5 | 5 | 2026-04-02 → 2026-10-04 |
 
@@ -34,7 +34,7 @@ reports split into three problems. Each one now has its own ticket.
 
 - One id, one report: the export repeats some rows, and they are counted once.
 - The cause comes from the tenant and the way in (`causes.ts`), not the subject and not the intake tag.
-- A report the desk read as a one-day move (`desk-notes.json`) counts as **one-day**, not under the tenant's swap cause.
+- A report the desk read as a one-day move (`desk-notes.json`) counts under **one-day** as the desk reads it, and stays counted where it is filed by tenant, as the desk's own table does.
 
 ## What to change in triage
 
