@@ -1,2 +1,4 @@
 .ticket
 *.log
+node_modules/
+.svelte-kit/
