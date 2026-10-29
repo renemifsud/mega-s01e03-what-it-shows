@@ -1,0 +1,49 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: René Mifsud
+status: open
+reviewed: 2026-10-29
+signature: René Mifsud
+---
+
+<script>
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+[#4471](/kb/incidents/4471) merged every report about dates by subject line. Read by cause, the
+reports split into three problems. Each one now has its own ticket.
+
+<Callout kind="warn">
+Fixing the parser does not close #4471. Two of the three problems survive that fix.
+</Callout>
+
+## The problems
+
+<ProblemTable ticket={4471} />
+
+1. **parser**: the shared parser reads every date month first. Our tenants write the day first,
+   so day and month swap. Ticket: [renemifsud/mega-s01e03-what-it-shows#1](https://github.com/renemifsud/mega-s01e03-what-it-shows/issues/1).
+2. **hint**: the booking-v3 form prints `MM/DD/YYYY` under its date field and then reads the
+   date day first. People type what the hint says. Day and month swap. Ticket:
+   [renemifsud/mega-s01e03-what-it-shows#2](https://github.com/renemifsud/mega-s01e03-what-it-shows/issues/2).
+3. **one-day**: some dates show one day early, and the day depends on where the reader is.
+   Nothing is swapped. Ticket: [renemifsud/mega-s01e03-what-it-shows#3](https://github.com/renemifsud/mega-s01e03-what-it-shows/issues/3).
+
+## How the reports were placed
+
+- One id, one report: the export repeats some rows, and they are counted once.
+- The cause comes from the tenant and the way in (`causes.ts`), not the subject and not the
+  intake tag.
+- A report the desk read as a one-day move (`desk-notes.json`) counts as **one-day**, not under
+  the tenant's swap cause.
+
+## What to change in triage
+
+Subject lines do not tell causes apart ([decision 0001](/kb/decisions/0001-dedupe-by-subject)).
+The same subject turns up in all three problems. Check the tenant, the form and the way in
+before merging.
+
+<RenderStamp {signature} />
