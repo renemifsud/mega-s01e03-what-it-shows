@@ -11,7 +11,7 @@ owner **René Mifsud** · (open) · reviewed 2026-10-29 · 0 days ago
 [#4471](/kb/incidents/4471) merged every report about dates by subject line. Read by cause, the
 reports split into three problems. Each one now has its own ticket.
 
-> ⚠ Fixing the parser does not close #4471. Two of the three problems survive that fix.
+> ⚠ #4471 was closed on 5 October. Only one of its three problems was fixed. The one-day problem is still open.
 
 ## The problems
 
@@ -24,11 +24,11 @@ reports split into three problems. Each one now has its own ticket.
 | `one-day` | 5 | 5 | 2026-04-02 → 2026-10-04 |
 
 1. **parser**: the shared parser reads every date month first. Our tenants write the day first,
-   so day and month swap. Ticket: renemifsud/mega-s01e03-what-it-shows#1.
+   so day and month swap. **Fixed** by `fix(dates): parse dd/mm for eu locales`. Ticket: renemifsud/mega-s01e03-what-it-shows#1.
 2. **hint**: the booking-v3 form prints `MM/DD/YYYY` under its date field and then reads the
-   date day first. People type what the hint says. Day and month swap. Ticket: renemifsud/mega-s01e03-what-it-shows#2.
+   date day first. People type what the hint says. Day and month swap. **Won't fix**: the booking-v3 form was retired. Ticket: renemifsud/mega-s01e03-what-it-shows#2.
 3. **one-day**: some dates show one day early, and the day depends on where the reader is.
-   Nothing is swapped. Ticket: renemifsud/mega-s01e03-what-it-shows#3.
+   Nothing is swapped. **Still open**: the parser fix does not touch it. Ticket: renemifsud/mega-s01e03-what-it-shows#3.
 
 ## How the reports were placed
 
