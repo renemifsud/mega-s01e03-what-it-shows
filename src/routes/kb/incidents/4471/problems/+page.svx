@@ -4,7 +4,7 @@ title: '#4471 · three problems, not one'
 owner: René Mifsud
 status: open
 reviewed: 2026-10-29
-signature: René Mifsud
+signature: 'v1.eyJzdWIiOiIxMjc0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyODgzMjUsImV4cCI6MTc5MzM3NDcyNX0.qac-v1oBeF-kyYdxv_e8jYsFBQMUuvQrPJZHLBHaaw4'
 ---
 
 <script>
